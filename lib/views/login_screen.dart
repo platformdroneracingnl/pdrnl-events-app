@@ -57,6 +57,25 @@ class _LoginCardState extends State<LoginCard> {
     getDeviceName();
   }
 
+  // Error dialog
+  void _showErrorDialog(String message) {
+    showDialog(
+      context: context,
+      builder: (ctx) => AlertDialog(
+        title: const Text('An Error Occurred!'),
+        content: Text(message),
+        actions: <Widget>[
+          TextButton(
+            child: const Text('Okay'),
+            onPressed: () {
+              Navigator.of(ctx).pop();
+            },
+          )
+        ],
+      ),
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Card(
@@ -74,7 +93,7 @@ class _LoginCardState extends State<LoginCard> {
                 keyboardType: TextInputType.emailAddress,
                 validator: (value) {
                   if (value!.isEmpty || !value.contains('@')) {
-                    return 'Invalid email';
+                    return 'Invalid email address';
                   }
                   return null;
                 },
@@ -101,7 +120,7 @@ class _LoginCardState extends State<LoginCard> {
                 const CircularProgressIndicator()
               else
                 ElevatedButton(
-                  onPressed: () => submit(),
+                  onPressed: _submit,
                   style: ElevatedButton.styleFrom(
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(5),
@@ -122,7 +141,7 @@ class _LoginCardState extends State<LoginCard> {
                         .pushReplacementNamed(RegisterScreen.routeName);
                   },
                   child: const Text(
-                    'Create an account',
+                    'Create new account',
                     style: TextStyle(fontSize: 14),
                   ),
                 ),
@@ -134,28 +153,27 @@ class _LoginCardState extends State<LoginCard> {
     );
   }
 
-  Future<void> submit() async {
-    final form = _formKey.currentState;
-
-    if (!form!.validate()) {
+  Future<void> _submit() async {
+    if (!_formKey.currentState!.validate()) {
       return;
     }
+    _formKey.currentState!.save();
 
     setState(() {
       _isLoading = true;
     });
 
+    final AuthProvider authProvider =
+        Provider.of<AuthProvider>(context, listen: false);
     try {
-      final Auth provider = Provider.of<Auth>(context, listen: false);
-      await provider.login(
+      // Make the login request
+      await authProvider.login(
         _emailController.text,
         _passwordController.text,
         _deviceName,
       );
     } catch (error) {
-      setState(() {
-        errorMessage = error.toString().replaceAll('Exception: ', '');
-      });
+      _showErrorDialog(error.toString().replaceAll('Exception: ', ''));
     }
 
     setState(() {
@@ -166,7 +184,6 @@ class _LoginCardState extends State<LoginCard> {
   // Get device name
   Future<void> getDeviceName() async {
     final DeviceInfoPlugin deviceInfoPlugin = DeviceInfoPlugin();
-
     try {
       if (Platform.isAndroid) {
         var build = await deviceInfoPlugin.androidInfo;

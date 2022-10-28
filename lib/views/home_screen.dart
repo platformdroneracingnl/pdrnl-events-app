@@ -22,7 +22,7 @@ class HomeScreen extends StatelessWidget {
           children: <Widget>[
             ElevatedButton(
                 onPressed: () {
-                  Provider.of<Auth>(context, listen: false).logout();
+                  Provider.of<AuthProvider>(context, listen: false).logout();
                   Navigator.of(context).pushNamed(LoginScreen.routeName);
                 },
                 child: const Text('Logout')),

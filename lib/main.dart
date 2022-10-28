@@ -18,14 +18,10 @@ class MyApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return MultiProvider(
-      providers: [
-        ChangeNotifierProvider(
-          create: (ctx) => Auth(),
-        ),
-      ],
-      child: Consumer<Auth>(
-        builder: (ctx, auth, _) => MaterialApp(
+    return ChangeNotifierProvider(
+      create: (context) => AuthProvider(),
+      child: Consumer<AuthProvider>(
+        builder: (ctx, auth, child) => MaterialApp(
           title: 'PDRNL Events App',
           debugShowCheckedModeBanner: true,
           theme: ThemeData(
