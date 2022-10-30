@@ -6,8 +6,9 @@ import 'package:provider/provider.dart';
 import 'package:device_info_plus/device_info_plus.dart';
 
 // import own files
-import 'package:pdrnl_events_app/views/login_screen.dart';
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
+import 'package:pdrnl_events_app/views/login_screen.dart';
+import 'package:pdrnl_events_app/views/home_screen.dart';
 
 class RegisterScreen extends StatefulWidget {
   static const routeName = '/register';
@@ -159,7 +160,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
                           child: InkWell(
                             onTap: () {
                               Navigator.of(context)
-                                  .pushReplacementNamed(LoginScreen.routeName);
+                                  .popAndPushNamed(LoginScreen.routeName);
                             },
                             child: const Text(
                               'Back to Login',
@@ -200,7 +201,9 @@ class _RegisterScreenState extends State<RegisterScreen> {
         _deviceName,
       );
 
-      Navigator.pop(context);
+      // Redirect to home screen
+      if (!mounted) return;
+      Navigator.of(context).pushNamed(HomeScreen.routeName);
     } catch (error) {
       _showErrorDialog(error.toString().replaceAll('Exception: ', ''));
     }

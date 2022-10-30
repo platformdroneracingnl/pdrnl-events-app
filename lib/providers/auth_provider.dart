@@ -22,13 +22,13 @@ class AuthProvider with ChangeNotifier {
     await prefs.setString('token', token);
   }
 
-  // getToken() async {
-  //   final prefs = await SharedPreferences.getInstance();
-  //   token = prefs.getString('token') ?? '';
-  //   if (token.isNotEmpty) {
-  //     isAuthenticated = true;
-  //   }
-  // }
+  getToken() async {
+    final prefs = await SharedPreferences.getInstance();
+    token = prefs.getString('token') ?? '';
+    if (token.isNotEmpty) {
+      isAuthenticated = true;
+    }
+  }
 
   removeToken() async {
     final prefs = await SharedPreferences.getInstance();
@@ -36,7 +36,7 @@ class AuthProvider with ChangeNotifier {
   }
 
   // Register method
-  Future<bool> register(
+  Future<void> register(
     String name,
     String email,
     String password,
@@ -71,7 +71,7 @@ class AuthProvider with ChangeNotifier {
         // Set isAuthenticated to true
         isAuthenticated = true;
         notifyListeners();
-        return true;
+        break;
       case 422:
         final errors = jsonDecode(response.body)['data'];
         throw Exception(errors);

@@ -7,6 +7,7 @@ import 'package:device_info_plus/device_info_plus.dart';
 
 // import own files
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
+import 'package:pdrnl_events_app/views/home_screen.dart';
 import 'package:pdrnl_events_app/views/register_screen.dart';
 
 class LoginScreen extends StatelessWidget {
@@ -138,7 +139,7 @@ class _LoginCardState extends State<LoginCard> {
                 child: InkWell(
                   onTap: () {
                     Navigator.of(context)
-                        .pushReplacementNamed(RegisterScreen.routeName);
+                        .popAndPushNamed(RegisterScreen.routeName);
                   },
                   child: const Text(
                     'Create new account',
@@ -172,6 +173,10 @@ class _LoginCardState extends State<LoginCard> {
         _passwordController.text,
         _deviceName,
       );
+
+      // Redirect to home screen
+      if (!mounted) return;
+      Navigator.of(context).pushNamed(HomeScreen.routeName);
     } catch (error) {
       _showErrorDialog(error.toString().replaceAll('Exception: ', ''));
     }

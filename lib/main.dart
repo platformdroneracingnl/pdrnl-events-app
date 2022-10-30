@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Own package imports
+import 'package:pdrnl_events_app/views/base_screen.dart';
 import 'package:pdrnl_events_app/views/home_screen.dart';
 import 'package:pdrnl_events_app/views/login_screen.dart';
 import 'package:pdrnl_events_app/views/register_screen.dart';
@@ -21,23 +22,31 @@ class MyApp extends StatelessWidget {
     return ChangeNotifierProvider(
       create: (context) => AuthProvider(),
       child: Consumer<AuthProvider>(
-        builder: (ctx, auth, child) => MaterialApp(
-          title: 'PDRNL Events App',
-          debugShowCheckedModeBanner: true,
-          theme: ThemeData(
-            colorScheme: ColorScheme.fromSwatch(
-              primarySwatch: Colors.red,
-            ).copyWith(
-              secondary: Colors.orange,
+        builder: (ctx, auth, child) {
+          return MultiProvider(
+            providers: [
+              ChangeNotifierProvider(create: (ctx) => AuthProvider()),
+            ],
+            child: MaterialApp(
+              title: 'PDRNL Events App',
+              debugShowCheckedModeBanner: true,
+              theme: ThemeData(
+                colorScheme: ColorScheme.fromSwatch(
+                  primarySwatch: Colors.red,
+                ).copyWith(
+                  secondary: Colors.orange,
+                ),
+              ),
+              initialRoute: '/',
+              home: const BaseScreen(),
+              routes: {
+                HomeScreen.routeName: (ctx) => const HomeScreen(),
+                LoginScreen.routeName: (ctx) => const LoginScreen(),
+                RegisterScreen.routeName: (ctx) => const RegisterScreen(),
+              },
             ),
-          ),
-          home: auth.isAuth ? const HomeScreen() : const LoginScreen(),
-          routes: {
-            HomeScreen.routeName: (ctx) => const HomeScreen(),
-            LoginScreen.routeName: (ctx) => const LoginScreen(),
-            RegisterScreen.routeName: (ctx) => const RegisterScreen(),
-          },
-        ),
+          );
+        },
       ),
     );
   }
