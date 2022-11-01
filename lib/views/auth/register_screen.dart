@@ -9,8 +9,8 @@ import 'package:device_info_plus/device_info_plus.dart';
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
 import 'package:pdrnl_events_app/widgets/auth/submit_button.dart';
 import 'package:pdrnl_events_app/widgets/auth/header.dart';
-import 'package:pdrnl_events_app/views/login_screen.dart';
-import 'package:pdrnl_events_app/views/home_screen.dart';
+import 'package:pdrnl_events_app/views/auth/login_screen.dart';
+import 'package:pdrnl_events_app/views/main/base_screen.dart';
 
 class RegisterScreen extends StatelessWidget {
   static const routeName = '/register';
@@ -200,7 +200,7 @@ class _RegisterFormState extends State<RegisterForm> {
 
       // Redirect to home screen
       if (!mounted) return;
-      Navigator.of(context).pushNamed(HomeScreen.routeName);
+      Navigator.of(context).pushNamed(BaseScreen.routeName);
     } catch (error) {
       _showErrorDialog(error.toString().replaceAll('Exception: ', ''));
     }

@@ -1,11 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
-import 'package:pdrnl_events_app/views/home_screen.dart';
-import 'package:pdrnl_events_app/views/login_screen.dart';
+import 'package:pdrnl_events_app/views/main/base_screen.dart';
+import 'package:pdrnl_events_app/views/auth/login_screen.dart';
 import 'package:provider/provider.dart';
 
-class BaseScreen extends StatelessWidget {
-  const BaseScreen({Key? key}) : super(key: key);
+class SplashScreen extends StatelessWidget {
+  const SplashScreen({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -19,7 +19,7 @@ class BaseScreen extends StatelessWidget {
                     child: CircularProgressIndicator(),
                   )
                 : auth.isAuthenticated
-                    ? const HomeScreen()
+                    ? const BaseScreen()
                     : const LoginScreen(),
       ),
     );
