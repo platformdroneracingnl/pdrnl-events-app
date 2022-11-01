@@ -3,10 +3,10 @@ import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Own package imports
-import 'package:pdrnl_events_app/views/base_screen.dart';
-import 'package:pdrnl_events_app/views/home_screen.dart';
-import 'package:pdrnl_events_app/views/login_screen.dart';
-import 'package:pdrnl_events_app/views/register_screen.dart';
+import 'package:pdrnl_events_app/views/splash_screen.dart';
+import 'package:pdrnl_events_app/views/main/base_screen.dart';
+import 'package:pdrnl_events_app/views/auth/login_screen.dart';
+import 'package:pdrnl_events_app/views/auth/register_screen.dart';
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
 
 Future<void> main() async {
@@ -38,9 +38,9 @@ class MyApp extends StatelessWidget {
                 ),
               ),
               initialRoute: '/',
-              home: const BaseScreen(),
+              home: const SplashScreen(),
               routes: {
-                HomeScreen.routeName: (ctx) => const HomeScreen(),
+                BaseScreen.routeName: (ctx) => const BaseScreen(),
                 LoginScreen.routeName: (ctx) => const LoginScreen(),
                 RegisterScreen.routeName: (ctx) => const RegisterScreen(),
               },
