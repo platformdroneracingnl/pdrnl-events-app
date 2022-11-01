@@ -7,7 +7,8 @@ import 'package:device_info_plus/device_info_plus.dart';
 
 // import own files
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
-import 'package:pdrnl_events_app/widgets/auth_header.dart';
+import 'package:pdrnl_events_app/widgets/auth/submit_button.dart';
+import 'package:pdrnl_events_app/widgets/auth/header.dart';
 import 'package:pdrnl_events_app/views/home_screen.dart';
 import 'package:pdrnl_events_app/views/register_screen.dart';
 
@@ -19,25 +20,24 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      resizeToAvoidBottomInset: false,
       body: Column(
         children: const <Widget>[
           AuthHeader('Login'),
-          LoginCard(),
+          LoginForm(),
         ],
       ),
     );
   }
 }
 
-class LoginCard extends StatefulWidget {
-  const LoginCard({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
   @override
-  State<LoginCard> createState() => _LoginCardState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _LoginCardState extends State<LoginCard> {
+class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _emailController = TextEditingController();
@@ -135,24 +135,12 @@ class _LoginCardState extends State<LoginCard> {
                   child: const Text("Forgot Password?"),
                 ),
                 const SizedBox(height: 30),
-                if (_isLoading)
-                  const CircularProgressIndicator()
-                else
-                  ElevatedButton(
-                    onPressed: _submit,
-                    style: ElevatedButton.styleFrom(
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(10),
-                      ),
-                      minimumSize: const Size(double.infinity, 40),
-                    ),
-                    child: const Text('Login'),
-                  ),
+                AuthSubmitButton('Login', _isLoading, _submit),
                 const SizedBox(height: 30),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    const Text('Are you new to PDRNL?'),
+                    const Text('Don\'t have an account?'),
                     const SizedBox(width: 5),
                     InkWell(
                       onTap: () {
