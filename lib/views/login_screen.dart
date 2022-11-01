@@ -7,6 +7,8 @@ import 'package:device_info_plus/device_info_plus.dart';
 
 // import own files
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
+import 'package:pdrnl_events_app/widgets/auth/submit_button.dart';
+import 'package:pdrnl_events_app/widgets/auth/header.dart';
 import 'package:pdrnl_events_app/views/home_screen.dart';
 import 'package:pdrnl_events_app/views/register_screen.dart';
 
@@ -18,30 +20,24 @@ class LoginScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Container(
-        color: Theme.of(context).primaryColorDark,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: const <Widget>[
-              LoginCard(),
-            ],
-          ),
-        ),
+      body: Column(
+        children: const <Widget>[
+          AuthHeader('Login'),
+          LoginForm(),
+        ],
       ),
     );
   }
 }
 
-class LoginCard extends StatefulWidget {
-  const LoginCard({super.key});
+class LoginForm extends StatefulWidget {
+  const LoginForm({super.key});
 
   @override
-  State<LoginCard> createState() => _LoginCardState();
+  State<LoginForm> createState() => _LoginFormState();
 }
 
-class _LoginCardState extends State<LoginCard> {
+class _LoginFormState extends State<LoginForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _emailController = TextEditingController();
@@ -50,7 +46,8 @@ class _LoginCardState extends State<LoginCard> {
   String errorMessage = '';
   late String _deviceName;
 
-  var _isLoading = false;
+  bool _isLoading = false;
+  bool _isObscure = true;
 
   @override
   void initState() {
@@ -79,75 +76,87 @@ class _LoginCardState extends State<LoginCard> {
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-      elevation: 8,
-      margin: const EdgeInsets.only(left: 16, right: 16),
-      child: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Form(
-          key: _formKey,
-          child: Column(
-            children: <Widget>[
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Email'),
-                controller: _emailController,
-                keyboardType: TextInputType.emailAddress,
-                validator: (value) {
-                  if (value!.isEmpty || !value.contains('@')) {
-                    return 'Invalid email address';
-                  }
-                  return null;
-                },
-              ),
-              TextFormField(
-                decoration: const InputDecoration(labelText: 'Password'),
-                controller: _passwordController,
-                keyboardType: TextInputType.text,
-                obscureText: true,
-                autocorrect: false,
-                enableSuggestions: false,
-                validator: (value) {
-                  // Validation condition
-                  if (value!.isEmpty) {
-                    return 'Password is required!';
-                  }
-                  return null;
-                },
-              ),
-              const SizedBox(
-                height: 25,
-              ),
-              if (_isLoading)
-                const CircularProgressIndicator()
-              else
-                ElevatedButton(
-                  onPressed: _submit,
-                  style: ElevatedButton.styleFrom(
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(5),
-                    ),
-                    minimumSize: const Size(double.infinity, 36),
-                  ),
-                  child: const Text('Login'),
-                ),
-              Text(
-                errorMessage,
-                style: const TextStyle(color: Colors.red),
-              ),
-              Padding(
-                padding: const EdgeInsets.only(top: 10),
-                child: InkWell(
-                  onTap: () {
-                    Navigator.of(context)
-                        .popAndPushNamed(RegisterScreen.routeName);
+    return Expanded(
+      flex: 1,
+      child: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.only(
+            left: 30,
+            right: 30,
+            top: 20,
+            bottom: 20,
+          ),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Email'),
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (value) {
+                    if (value!.isEmpty || !value.contains('@')) {
+                      return 'Invalid email address';
+                    }
+                    return null;
                   },
-                  child: const Text(
-                    'Create new account',
-                    style: TextStyle(fontSize: 14),
-                  ),
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                TextFormField(
+                  decoration: InputDecoration(
+                    labelText: 'Password',
+                    suffixIcon: IconButton(
+                        icon: Icon(_isObscure
+                            ? Icons.visibility
+                            : Icons.visibility_off),
+                        onPressed: () {
+                          setState(() {
+                            _isObscure = !_isObscure;
+                          });
+                        }),
+                  ),
+                  controller: _passwordController,
+                  keyboardType: TextInputType.text,
+                  obscureText: _isObscure,
+                  autocorrect: false,
+                  enableSuggestions: false,
+                  validator: (value) {
+                    // Validation condition
+                    if (value!.isEmpty) {
+                      return 'Password is required!';
+                    }
+                    return null;
+                  },
+                ),
+                Container(
+                  margin: const EdgeInsets.only(top: 10),
+                  alignment: Alignment.centerRight,
+                  child: const Text("Forgot Password?"),
+                ),
+                const SizedBox(height: 30),
+                AuthSubmitButton('Login', _isLoading, _submit),
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text('Don\'t have an account?'),
+                    const SizedBox(width: 5),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context)
+                            .pushNamed(RegisterScreen.routeName);
+                      },
+                      child: Text(
+                        'Register',
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
