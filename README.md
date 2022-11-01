@@ -1,9 +1,13 @@
 # 🏆 PDRNL Events App
 
-A new Flutter project.
+<p align="middle">
+  <img src="assets/screens/login_screen.jpg" width="30%" />
+</p>
 
-Flutter version: 3.3.x
-Dart version: 2.18.x
+An application with which you can register for drone racing competitions, linked to the PDRNL system.
+
+- Flutter version: 3.3.x
+- Dart version: 2.18.x
 
 ## Packages
 
