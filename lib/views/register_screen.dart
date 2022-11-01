@@ -7,19 +7,37 @@ import 'package:device_info_plus/device_info_plus.dart';
 
 // import own files
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
+import 'package:pdrnl_events_app/widgets/auth/submit_button.dart';
+import 'package:pdrnl_events_app/widgets/auth/header.dart';
 import 'package:pdrnl_events_app/views/login_screen.dart';
 import 'package:pdrnl_events_app/views/home_screen.dart';
 
-class RegisterScreen extends StatefulWidget {
+class RegisterScreen extends StatelessWidget {
   static const routeName = '/register';
 
   const RegisterScreen({super.key});
 
   @override
-  State<RegisterScreen> createState() => _RegisterScreenState();
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Column(
+        children: const <Widget>[
+          AuthHeader('Register'),
+          RegisterForm(),
+        ],
+      ),
+    );
+  }
 }
 
-class _RegisterScreenState extends State<RegisterScreen> {
+class RegisterForm extends StatefulWidget {
+  const RegisterForm({super.key});
+
+  @override
+  State<RegisterForm> createState() => _RegisterFormState();
+}
+
+class _RegisterFormState extends State<RegisterForm> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
 
   final _nameController = TextEditingController();
@@ -30,7 +48,7 @@ class _RegisterScreenState extends State<RegisterScreen> {
   String errorMessage = '';
   late String _deviceName;
 
-  var _isLoading = false;
+  bool _isLoading = false;
 
   @override
   void initState() {
@@ -59,121 +77,100 @@ class _RegisterScreenState extends State<RegisterScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
-      body: Container(
-        color: Theme.of(context).primaryColorDark,
-        child: Padding(
-          padding: const EdgeInsets.all(8.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              Card(
-                elevation: 8,
-                margin: const EdgeInsets.only(left: 16, right: 16),
-                child: Padding(
-                  padding: const EdgeInsets.all(16.0),
-                  child: Form(
-                    key: _formKey,
-                    child: Column(
-                      children: <Widget>[
-                        TextFormField(
-                          decoration: const InputDecoration(labelText: 'Name'),
-                          controller: _nameController,
-                          keyboardType: TextInputType.name,
-                          validator: (String? value) {
-                            if (value!.isEmpty) {
-                              return 'Enter name';
-                            }
-                            return null;
-                          },
-                          onChanged: (text) =>
-                              setState(() => errorMessage = ''),
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(labelText: 'Email'),
-                          controller: _emailController,
-                          keyboardType: TextInputType.emailAddress,
-                          validator: (String? value) {
-                            if (value!.isEmpty || !value.contains('@')) {
-                              return 'Invalid email';
-                            }
-                            return null;
-                          },
-                          onChanged: (text) =>
-                              setState(() => errorMessage = ''),
-                        ),
-                        TextFormField(
-                          decoration:
-                              const InputDecoration(labelText: 'Password'),
-                          controller: _passwordController,
-                          obscureText: true,
-                          autocorrect: false,
-                          enableSuggestions: false,
-                          validator: (String? value) {
-                            if (value!.isEmpty) {
-                              return 'Enter password';
-                            }
-                            return null;
-                          },
-                          onChanged: (text) =>
-                              setState(() => errorMessage = ''),
-                        ),
-                        TextFormField(
-                          decoration: const InputDecoration(
-                            labelText: 'Confirm Password',
-                          ),
-                          controller: _passwordConfirmController,
-                          obscureText: true,
-                          enableSuggestions: false,
-                          autocorrect: false,
-                          validator: (String? value) {
-                            if (value!.isEmpty) {
-                              return 'Repeat password';
-                            }
-                            if (value != _passwordController.text) {
-                              return 'Passwords do not match';
-                            }
-                            return null;
-                          },
-                          onChanged: (text) =>
-                              setState(() => errorMessage = ''),
-                        ),
-                        const SizedBox(
-                          height: 25,
-                        ),
-                        if (_isLoading)
-                          const CircularProgressIndicator()
-                        else
-                          ElevatedButton(
-                            onPressed: _submit,
-                            style: ElevatedButton.styleFrom(
-                              minimumSize: const Size(double.infinity, 36),
-                            ),
-                            child: const Text('Register'),
-                          ),
-                        Text(
-                          errorMessage,
-                          style: const TextStyle(color: Colors.red),
-                        ),
-                        Padding(
-                          padding: const EdgeInsets.only(top: 10),
-                          child: InkWell(
-                            onTap: () {
-                              Navigator.of(context)
-                                  .popAndPushNamed(LoginScreen.routeName);
-                            },
-                            child: const Text(
-                              'Back to Login',
-                              style: TextStyle(fontSize: 14),
-                            ),
-                          ),
-                        ),
-                      ],
-                    ),
-                  ),
+    return Expanded(
+      flex: 1,
+      child: SingleChildScrollView(
+        child: Container(
+          margin: const EdgeInsets.only(
+            left: 30,
+            right: 30,
+            top: 20,
+            bottom: 20,
+          ),
+          child: Form(
+            key: _formKey,
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
+              children: <Widget>[
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Name'),
+                  controller: _nameController,
+                  keyboardType: TextInputType.name,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return 'Enter name';
+                    }
+                    return null;
+                  },
                 ),
-              ),
-            ],
+                const SizedBox(height: 20),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Email'),
+                  controller: _emailController,
+                  keyboardType: TextInputType.emailAddress,
+                  validator: (String? value) {
+                    if (value!.isEmpty || !value.contains('@')) {
+                      return 'Invalid email';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  decoration: const InputDecoration(labelText: 'Password'),
+                  controller: _passwordController,
+                  obscureText: true,
+                  autocorrect: false,
+                  enableSuggestions: false,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return 'Enter password';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 20),
+                TextFormField(
+                  decoration: const InputDecoration(
+                    labelText: 'Confirm Password',
+                  ),
+                  controller: _passwordConfirmController,
+                  obscureText: true,
+                  enableSuggestions: false,
+                  autocorrect: false,
+                  validator: (String? value) {
+                    if (value!.isEmpty) {
+                      return 'Repeat password';
+                    }
+                    if (value != _passwordController.text) {
+                      return 'Passwords do not match';
+                    }
+                    return null;
+                  },
+                ),
+                const SizedBox(height: 30),
+                AuthSubmitButton('Register', _isLoading, _submit),
+                const SizedBox(height: 30),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: <Widget>[
+                    const Text('Already have an account?'),
+                    const SizedBox(width: 5),
+                    InkWell(
+                      onTap: () {
+                        Navigator.of(context)
+                            .popAndPushNamed(LoginScreen.routeName);
+                      },
+                      child: Text(
+                        'Login',
+                        style: TextStyle(
+                            color: Theme.of(context).colorScheme.primary),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
         ),
       ),
