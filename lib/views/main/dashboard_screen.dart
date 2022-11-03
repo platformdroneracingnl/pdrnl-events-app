@@ -10,31 +10,34 @@ class DashboardScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final events = Provider.of<EventsProvider>(context);
+    final provEvents = Provider.of<EventsProvider>(context);
     final auth = Provider.of<AuthProvider>(context);
 
     return Scaffold(
-      body: Column(
-        children: <Widget>[
-          FutureBuilder(
-            future: events.getEvents(auth.token),
-            builder: (context, snapshot) {
-              if (snapshot.connectionState == ConnectionState.waiting) {
-                return const Center(
-                  child: CircularProgressIndicator(),
-                );
-              } else {
-                if (snapshot.error != null) {
-                  return const Center(
-                    child: Text('An error occurred!'),
+      body: FutureBuilder(
+        future: provEvents.getEvents(auth.token),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(
+              child: CircularProgressIndicator(),
+            );
+          } else {
+            if (snapshot.error != null) {
+              return const Center(
+                child: Text('An error occurred!'),
+              );
+            } else {
+              return ListView.builder(
+                itemCount: provEvents.events.length,
+                itemBuilder: (context, index) {
+                  return ListTile(
+                    title: Text(provEvents.events[index].name),
                   );
-                } else {
-                  return const Text('test');
-                }
-              }
-            },
-          ),
-        ],
+                },
+              );
+            }
+          }
+        },
       ),
     );
   }
