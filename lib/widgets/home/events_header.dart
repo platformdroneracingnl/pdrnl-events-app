@@ -16,7 +16,7 @@ class HomeEventsHeader extends StatelessWidget {
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
           const Text(
-            'Upcomming events',
+            'Upcoming events',
             style: TextStyle(
               fontSize: 20,
               fontWeight: FontWeight.w500,
