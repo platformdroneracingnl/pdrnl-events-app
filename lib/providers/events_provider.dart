@@ -32,7 +32,7 @@ class EventsProvider extends ChangeNotifier {
       for (var event in (extractedData)['data']) {
         loadedEvents.add(LocalEvent.fromMap(event));
       }
-      events = loadedEvents;
+      events = loadedEvents.reversed.toList();
     } else {
       throw Exception('Failed to load events');
     }
