@@ -14,6 +14,7 @@ An application with which you can register for drone racing competitions, linked
 
 The following packages are used in this project:
 
+- [intl](https://pub.dev/packages/intl)
 - [provider](https://pub.dev/packages/provider)
 - [http](https://pub.dev/packages/http)
 - [flutter_dotenv](https://pub.dev/packages/flutter_dotenv)
