@@ -13,6 +13,10 @@ class EventsProvider extends ChangeNotifier {
 
   final String baseUrl = '${dotenv.env['API_URL']}/api/v1';
 
+  LocalEvent findById(int id) {
+    return events.firstWhere((event) => event.id == id);
+  }
+
   Future<void> getEvents(String token) async {
     final List<LocalEvent> loadedEvents = [];
     String uri = '$baseUrl/events';

@@ -1,7 +1,8 @@
 # 🏆 PDRNL Events App
 
 <p align="middle">
-  <img src="assets/screens/login_screen.jpg" width="30%" />
+  <img src="assets/screens/login_screen.jpg" width="30%" style="margin-right: 25px;" />
+  <img src="assets/screens/event_detail_screen.jpg" width="30%" />
 </p>
 
 An application with which you can register for drone racing competitions, linked to the PDRNL system.

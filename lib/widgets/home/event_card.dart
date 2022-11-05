@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 // Own package imports
 import 'package:pdrnl_events_app/models/event.dart';
+import 'package:pdrnl_events_app/views/event_detail_screen.dart';
 
 class HomeEventCard extends StatelessWidget {
   const HomeEventCard({
@@ -32,7 +33,10 @@ class HomeEventCard extends StatelessWidget {
               // Event image
               InkWell(
                 onTap: () {
-                  print('You are tapped ${event.id}');
+                  Navigator.of(context).pushNamed(
+                    EventDetailtScreen.routeName,
+                    arguments: event.id,
+                  );
                 },
                 child: Container(
                   height: 160,
@@ -41,7 +45,7 @@ class HomeEventCard extends StatelessWidget {
                     image: const DecorationImage(
                       fit: BoxFit.cover,
                       image: NetworkImage(
-                          'https://petapixel.com/assets/uploads/2022/07/DALLEcopy.jpg'),
+                          'https://images.pexels.com/photos/1190297/pexels-photo-1190297.jpeg'),
                     ),
                   ),
                 ),

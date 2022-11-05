@@ -5,6 +5,7 @@ import 'package:flutter_dotenv/flutter_dotenv.dart';
 // Own package imports
 import 'package:pdrnl_events_app/views/splash_screen.dart';
 import 'package:pdrnl_events_app/views/events_screen.dart';
+import 'package:pdrnl_events_app/views/event_detail_screen.dart';
 import 'package:pdrnl_events_app/views/main/base_screen.dart';
 import 'package:pdrnl_events_app/views/auth/login_screen.dart';
 import 'package:pdrnl_events_app/views/auth/register_screen.dart';
@@ -47,6 +48,8 @@ class MyApp extends StatelessWidget {
                 LoginScreen.routeName: (ctx) => const LoginScreen(),
                 RegisterScreen.routeName: (ctx) => const RegisterScreen(),
                 EventsScreen.routeName: (ctx) => const EventsScreen(),
+                EventDetailtScreen.routeName: (ctx) =>
+                    const EventDetailtScreen(),
               },
             ),
           );
