@@ -48,8 +48,7 @@ class MyApp extends StatelessWidget {
                 LoginScreen.routeName: (ctx) => const LoginScreen(),
                 RegisterScreen.routeName: (ctx) => const RegisterScreen(),
                 EventsScreen.routeName: (ctx) => const EventsScreen(),
-                EventDetailtScreen.routeName: (ctx) =>
-                    const EventDetailtScreen(),
+                EventDetailScreen.routeName: (ctx) => const EventDetailScreen(),
               },
             ),
           );

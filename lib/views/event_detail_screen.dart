@@ -7,10 +7,10 @@ import 'package:pdrnl_events_app/widgets/event/app_bar.dart';
 import 'package:pdrnl_events_app/widgets/event/scroll_paper.dart';
 import 'package:pdrnl_events_app/widgets/event/signup_button.dart';
 
-class EventDetailtScreen extends StatelessWidget {
+class EventDetailScreen extends StatelessWidget {
   static const routeName = '/event-detail';
 
-  const EventDetailtScreen({super.key});
+  const EventDetailScreen({super.key});
 
   @override
   Widget build(BuildContext context) {
