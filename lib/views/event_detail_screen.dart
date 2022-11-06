@@ -3,8 +3,8 @@ import 'package:provider/provider.dart';
 
 // Own package imports
 import 'package:pdrnl_events_app/providers/events_provider.dart';
-import 'package:pdrnl_events_app/widgets/event/app_bar.dart';
-import 'package:pdrnl_events_app/widgets/event/scroll_paper.dart';
+import 'package:pdrnl_events_app/widgets/event/event_app_bar.dart';
+import 'package:pdrnl_events_app/widgets/event/event_scroll_paper.dart';
 import 'package:pdrnl_events_app/widgets/event/signup_button.dart';
 
 class EventDetailScreen extends StatelessWidget {
@@ -24,16 +24,12 @@ class EventDetailScreen extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: <Widget>[
-            // Event header image
-            SizedBox(
-              width: double.infinity,
-              height: 350,
-              child: Image.network(
-                  'https://images.pexels.com/photos/2263436/pexels-photo-2263436.jpeg',
-                  fit: BoxFit.cover),
+            CustomScrollView(
+              slivers: <Widget>[
+                const EventAppBar(),
+                EventScrollPaper(event: loadedEvent),
+              ],
             ),
-            const EventAppBar(),
-            EventScrollPaper(event: loadedEvent),
             const Align(
               alignment: Alignment.bottomCenter,
               child: EventSignUpButton(),
