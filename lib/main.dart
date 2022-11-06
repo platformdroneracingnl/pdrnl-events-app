@@ -3,6 +3,7 @@ import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Own package imports
+import 'package:pdrnl_events_app/theme.dart';
 import 'package:pdrnl_events_app/routes.dart';
 import 'package:pdrnl_events_app/views/splash_screen.dart';
 import 'package:pdrnl_events_app/providers/events_provider.dart';
@@ -30,13 +31,7 @@ class MyApp extends StatelessWidget {
             child: MaterialApp(
               title: 'PDRNL Events App',
               debugShowCheckedModeBanner: true,
-              theme: ThemeData(
-                colorScheme: ColorScheme.fromSwatch(
-                  primarySwatch: Colors.red,
-                ).copyWith(
-                  secondary: Colors.orange,
-                ),
-              ),
+              theme: theme(),
               initialRoute: '/',
               home: const SplashScreen(),
               routes: routes,
