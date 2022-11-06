@@ -3,12 +3,8 @@ import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Own package imports
+import 'package:pdrnl_events_app/routes.dart';
 import 'package:pdrnl_events_app/views/splash_screen.dart';
-import 'package:pdrnl_events_app/views/events_screen.dart';
-import 'package:pdrnl_events_app/views/event_detail_screen.dart';
-import 'package:pdrnl_events_app/views/main/base_screen.dart';
-import 'package:pdrnl_events_app/views/auth/login_screen.dart';
-import 'package:pdrnl_events_app/views/auth/register_screen.dart';
 import 'package:pdrnl_events_app/providers/events_provider.dart';
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
 
@@ -43,13 +39,7 @@ class MyApp extends StatelessWidget {
               ),
               initialRoute: '/',
               home: const SplashScreen(),
-              routes: {
-                BaseScreen.routeName: (ctx) => const BaseScreen(),
-                LoginScreen.routeName: (ctx) => const LoginScreen(),
-                RegisterScreen.routeName: (ctx) => const RegisterScreen(),
-                EventsScreen.routeName: (ctx) => const EventsScreen(),
-                EventDetailScreen.routeName: (ctx) => const EventDetailScreen(),
-              },
+              routes: routes,
             ),
           );
         },
