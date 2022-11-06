@@ -1,7 +1,8 @@
 # 🏆 PDRNL Events App
 
 <p align="middle">
-  <img src="assets/screens/login_screen.jpg" width="30%" />
+  <img src="assets/screens/login_screen.jpg" width="30%" style="margin-right: 25px;" />
+  <img src="assets/screens/event_detail_screen.jpg" width="30%" />
 </p>
 
 An application with which you can register for drone racing competitions, linked to the PDRNL system.
@@ -13,6 +14,7 @@ An application with which you can register for drone racing competitions, linked
 
 The following packages are used in this project:
 
+- [intl](https://pub.dev/packages/intl)
 - [provider](https://pub.dev/packages/provider)
 - [http](https://pub.dev/packages/http)
 - [flutter_dotenv](https://pub.dev/packages/flutter_dotenv)
