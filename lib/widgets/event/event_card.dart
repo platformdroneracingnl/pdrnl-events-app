@@ -128,8 +128,7 @@ class EventCard extends StatelessWidget {
                       height: 180,
                       width: 275,
                       fit: BoxFit.cover,
-                      image: NetworkImage(
-                          'https://images.pexels.com/photos/196652/pexels-photo-196652.jpeg'),
+                      image: NetworkImage('https://picsum.photos/200'),
                     ),
                   ),
                   // Ticket price
