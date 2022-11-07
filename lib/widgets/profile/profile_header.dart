@@ -65,16 +65,13 @@ class ProfileHeader extends StatelessWidget {
                 const SizedBox(height: 20),
                 Text(
                   profile.name,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  style: Styles.headLineStyle1,
                 ),
                 const SizedBox(height: 5),
                 Text(
                   profile.email,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 17,
                     fontWeight: FontWeight.w100,
                   ),
                 ),
