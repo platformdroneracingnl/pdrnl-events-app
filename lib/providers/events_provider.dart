@@ -16,7 +16,6 @@ class EventsProvider extends ChangeNotifier {
   }
 
   Future<void> getEvents(String token) async {
-    final List<LocalEvent> loadedEvents = [];
     String uri = '$baseUrl/events';
 
     http.Response response = await http.get(
@@ -31,10 +30,13 @@ class EventsProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       // Loop through the response body [data] and add each event to the _events list
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
+      final List<LocalEvent> loadedEvents = [];
+      // print(extractedData);
       for (var event in (extractedData)['data']) {
         loadedEvents.add(LocalEvent.fromMap(event));
       }
       events = loadedEvents.reversed.toList();
+      notifyListeners();
     } else {
       throw Exception('Failed to load events');
     }
