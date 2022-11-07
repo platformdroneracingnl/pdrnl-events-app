@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Own package imports
+import 'package:pdrnl_events_app/utils/constants.dart';
 import 'package:pdrnl_events_app/views/events_screen.dart';
 
 class HomeEventsHeader extends StatelessWidget {
@@ -15,18 +16,18 @@ class HomeEventsHeader extends StatelessWidget {
       child: Row(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         children: [
-          const Text(
+          Text(
             'Upcoming events',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.w500,
-            ),
+            style: Styles.headLineStyle2,
           ),
           InkWell(
             onTap: () {
               Navigator.pushNamed(context, EventsScreen.routeName);
             },
-            child: const Text('View all'),
+            child: Text(
+              'View all',
+              style: Styles.textStyle.copyWith(color: Styles.primaryColor),
+            ),
           ),
         ],
       ),
