@@ -21,6 +21,7 @@ class SplashScreen extends StatelessWidget {
     }
 
     return Scaffold(
+      backgroundColor: Colors.white,
       body: FutureBuilder(
         future: waiting(),
         builder: (ctx, authResultSnapshot) =>

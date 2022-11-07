@@ -14,7 +14,7 @@ class AuthHeader extends StatelessWidget {
       height: MediaQuery.of(context).size.height * 0.3,
       decoration: BoxDecoration(
           gradient: LinearGradient(
-            colors: [orangeColors, orangeLightColors],
+            colors: [orangeColors, Styles.primaryColor],
             end: Alignment.bottomCenter,
             begin: Alignment.topCenter,
           ),

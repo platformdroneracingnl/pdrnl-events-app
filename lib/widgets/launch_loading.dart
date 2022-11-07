@@ -15,7 +15,7 @@ class LaunchLoading extends StatelessWidget {
       width: MediaQuery.of(context).size.width,
       decoration: BoxDecoration(
         gradient: LinearGradient(
-          colors: [orangeColors, orangeLightColors],
+          colors: [orangeColors, Styles.primaryColor],
           end: Alignment.bottomCenter,
           begin: Alignment.topCenter,
         ),

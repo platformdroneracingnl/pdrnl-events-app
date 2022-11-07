@@ -37,7 +37,7 @@ class ProfileListItem extends StatelessWidget {
           children: <Widget>[
             Icon(
               menuIcon,
-              color: orangeLightColors,
+              color: Styles.primaryColor,
               size: 30,
             ),
             const SizedBox(width: 20),
