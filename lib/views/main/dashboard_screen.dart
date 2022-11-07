@@ -26,11 +26,11 @@ class DashboardScreen extends StatelessWidget {
           children: <Widget>[
             Column(
               crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const SizedBox(height: 10),
+              children: const [
+                SizedBox(height: 10),
                 // Events header
-                const HomeEventsHeader(),
-                const SizedBox(height: 10),
+                HomeEventsHeader(),
+                SizedBox(height: 10),
                 UpcomingEvents(),
               ],
             ),
