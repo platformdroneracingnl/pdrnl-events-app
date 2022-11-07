@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
+import 'package:pdrnl_events_app/models/user.dart';
 import 'package:provider/provider.dart';
 
 // My package imports
 import 'package:pdrnl_events_app/utils/constants.dart';
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
-import 'package:pdrnl_events_app/models/user.dart';
 
 class ProfileHeader extends StatelessWidget {
   const ProfileHeader({
@@ -17,12 +17,12 @@ class ProfileHeader extends StatelessWidget {
     return FutureBuilder(
       future: auth.getUser(auth.token),
       builder: (context, snapshot) {
-        LocalUser user = auth.user;
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
+          final LocalUser user = auth.user;
           return SizedBox(
             child: Column(
               children: <Widget>[
@@ -62,7 +62,7 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  auth.user.name,
+                  user.name,
                   style: const TextStyle(
                     fontSize: 20,
                     fontWeight: FontWeight.w600,
