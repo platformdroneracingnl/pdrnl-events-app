@@ -3,14 +3,16 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 import 'package:shared_preferences/shared_preferences.dart';
+
+// Own package imports
+import 'package:pdrnl_events_app/models/user.dart';
+import 'package:pdrnl_events_app/utils/constants.dart';
 
 class AuthProvider with ChangeNotifier {
   bool isAuthenticated = false;
+  late LocalUser user;
   late String token;
-
-  final String baseUrl = '${dotenv.env['API_URL']}/api/v1';
 
   // Getter for isAuthenticated
   bool get isAuth {
@@ -120,6 +122,28 @@ class AuthProvider with ChangeNotifier {
         throw Exception(errors);
       default:
         throw Exception('Something went wrong');
+    }
+  }
+
+  Future<void> getUser(String token) async {
+    String uri = '$baseUrl/user';
+
+    http.Response response = await http.get(
+      Uri.parse(uri),
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
+        HttpHeaders.acceptHeader: 'application/json',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+      },
+    );
+
+    switch (response.statusCode) {
+      case 200:
+        Map<String, dynamic> data = jsonDecode(response.body);
+        user = LocalUser.fromMap(data['data']);
+        break;
+      default:
+        throw Exception('Failed to load user');
     }
   }
 
