@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:pdrnl_events_app/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
@@ -27,6 +28,7 @@ class MyApp extends StatelessWidget {
             providers: [
               ChangeNotifierProvider(create: (ctx) => EventsProvider()),
               ChangeNotifierProvider(create: (ctx) => AuthProvider()),
+              ChangeNotifierProvider(create: (ctx) => ProfileProvider()),
             ],
             child: MaterialApp(
               title: 'PDRNL Events App',
