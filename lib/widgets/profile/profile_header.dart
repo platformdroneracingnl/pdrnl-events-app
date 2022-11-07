@@ -1,10 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pdrnl_events_app/models/user.dart';
-import 'package:pdrnl_events_app/providers/profile_provider.dart';
 import 'package:provider/provider.dart';
 
 // My package imports
 import 'package:pdrnl_events_app/utils/constants.dart';
+import 'package:pdrnl_events_app/models/user.dart';
+import 'package:pdrnl_events_app/providers/profile_provider.dart';
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
 
 class ProfileHeader extends StatelessWidget {

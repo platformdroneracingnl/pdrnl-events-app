@@ -2,6 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 import 'package:pdrnl_events_app/models/event.dart';
+import 'package:pdrnl_events_app/utils/constants.dart';
 
 class EventScrollPaper extends StatelessWidget {
   final LocalEvent event;
@@ -31,15 +32,12 @@ class EventScrollPaper extends StatelessWidget {
             ),
             Text(
               event.name,
-              style: Theme.of(context).textTheme.headline5,
+              style: Styles.headLineStyle1,
             ),
             const SizedBox(height: 10),
             Text(
               DateFormat('dd-MM-yyyy').format(event.date),
-              style: Theme.of(context)
-                  .textTheme
-                  .bodyText2!
-                  .copyWith(color: Colors.black54),
+              style: Styles.headLineStyle4,
             ),
             const SizedBox(height: 15),
             Row(
@@ -69,7 +67,7 @@ class EventScrollPaper extends StatelessWidget {
                     ),
                     Text(
                       'Organization',
-                      style: Theme.of(context).textTheme.titleSmall,
+                      style: Theme.of(context).textTheme.titleMedium,
                     ),
                   ],
                 ),
