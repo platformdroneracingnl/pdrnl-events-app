@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Import own files
-import 'package:pdrnl_events_app/utils/color.dart';
+import 'package:pdrnl_events_app/utils/constants.dart';
 
 class AuthHeader extends StatelessWidget {
   final String text;

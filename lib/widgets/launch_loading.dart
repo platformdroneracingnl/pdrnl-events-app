@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 // Own package imports
-import 'package:pdrnl_events_app/utils/color.dart';
+import 'package:pdrnl_events_app/utils/constants.dart';
 
 class LaunchLoading extends StatelessWidget {
   const LaunchLoading({

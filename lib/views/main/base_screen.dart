@@ -4,7 +4,7 @@ import 'package:google_nav_bar/google_nav_bar.dart';
 import 'package:fluentui_icons/fluentui_icons.dart';
 
 // Own package imports
-import 'package:pdrnl_events_app/utils/color.dart';
+import 'package:pdrnl_events_app/utils/constants.dart';
 import 'package:pdrnl_events_app/views/main/dashboard_screen.dart';
 import 'package:pdrnl_events_app/views/main/profile_screen.dart';
 import 'package:pdrnl_events_app/views/main/search_screen.dart';

@@ -3,15 +3,13 @@ import 'dart:convert';
 
 import 'package:flutter/material.dart';
 import 'package:http/http.dart' as http;
-import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 // Own package imports
+import 'package:pdrnl_events_app/utils/constants.dart';
 import 'package:pdrnl_events_app/models/event.dart';
 
 class EventsProvider extends ChangeNotifier {
   List<LocalEvent> events = [];
-
-  final String baseUrl = '${dotenv.env['API_URL']}/api/v1';
 
   LocalEvent findById(int id) {
     return events.firstWhere((event) => event.id == id);
