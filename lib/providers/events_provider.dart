@@ -9,10 +9,15 @@ import 'package:pdrnl_events_app/utils/constants.dart';
 import 'package:pdrnl_events_app/models/event.dart';
 
 class EventsProvider extends ChangeNotifier {
-  List<LocalEvent> events = [];
+  List<Event> events = [];
 
-  LocalEvent findById(int id) {
+  Event findById(int id) {
     return events.firstWhere((event) => event.id == id);
+  }
+
+  // Get only the events that are visible to pilots
+  List<Event> get visibleEvents {
+    return events.where((event) => event.visible == true).toList();
   }
 
   Future<void> getEvents(String token) async {
@@ -30,10 +35,10 @@ class EventsProvider extends ChangeNotifier {
     if (response.statusCode == 200) {
       // Loop through the response body [data] and add each event to the _events list
       final extractedData = json.decode(response.body) as Map<String, dynamic>;
-      final List<LocalEvent> loadedEvents = [];
+      final List<Event> loadedEvents = [];
       // print(extractedData);
       for (var event in (extractedData)['data']) {
-        loadedEvents.add(LocalEvent.fromMap(event));
+        loadedEvents.add(Event.fromMap(event));
       }
       events = loadedEvents.reversed.toList();
       notifyListeners();
