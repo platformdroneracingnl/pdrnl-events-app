@@ -13,13 +13,13 @@ class ProfileScreen extends StatelessWidget {
   // When a user will logout
   showAlertDialog(BuildContext context) {
     // set up the buttons
-    Widget cancelButton = ElevatedButton(
+    Widget cancelButton = TextButton(
       child: const Text("Cancel"),
       onPressed: () {
         Navigator.of(context).pop();
       },
     );
-    Widget continueButton = ElevatedButton(
+    Widget continueButton = TextButton(
       child: const Text("Uitloggen"),
       onPressed: () {
         Provider.of<AuthProvider>(context, listen: false).logout();
