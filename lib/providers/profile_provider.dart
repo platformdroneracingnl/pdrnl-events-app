@@ -27,6 +27,7 @@ class ProfileProvider with ChangeNotifier {
       case 200:
         Map<String, dynamic> data = jsonDecode(response.body);
         user = LocalUser.fromMap(data['data']);
+        notifyListeners();
         break;
       default:
         throw Exception('Failed to load user');

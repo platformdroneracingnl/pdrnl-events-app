@@ -11,18 +11,15 @@ class UpcomingEvents extends StatelessWidget {
     Key? key,
   }) : super(key: key);
 
-  Future<void> _getEvents(BuildContext context) async {
-    final auth = Provider.of<AuthProvider>(context, listen: false);
-    await Provider.of<EventsProvider>(context, listen: false)
-        .getEvents(auth.token);
-  }
-
   @override
   Widget build(BuildContext context) {
+    final authProvider = Provider.of<AuthProvider>(context, listen: false);
+    final eventsProvider = Provider.of<EventsProvider>(context, listen: false);
+
     return SizedBox(
       height: 285,
       child: FutureBuilder(
-        future: _getEvents(context),
+        future: eventsProvider.getEvents(authProvider.token),
         builder: (context, snapshot) {
           if (snapshot.connectionState == ConnectionState.waiting) {
             return const Center(
@@ -32,9 +29,9 @@ class UpcomingEvents extends StatelessWidget {
             return Consumer<EventsProvider>(
               builder: (ctx, eventsData, _) => ListView.builder(
                 scrollDirection: Axis.horizontal,
-                itemCount: eventsData.events.length,
+                itemCount: eventsData.visibleEvents.length,
                 itemBuilder: (context, index) {
-                  return EventCard(event: eventsData.events[index]);
+                  return EventCard(event: eventsData.visibleEvents[index]);
                 },
               ),
             );

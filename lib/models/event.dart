@@ -1,4 +1,4 @@
-class LocalEvent {
+class Event {
   final int id;
   final String name;
   final String category;
@@ -6,9 +6,10 @@ class LocalEvent {
   final int maxRegistrations;
   final DateTime startRegistration;
   final DateTime endRegistration;
-  final int price;
+  final String price;
+  final bool visible;
 
-  LocalEvent({
+  Event({
     required this.id,
     required this.name,
     required this.category,
@@ -17,9 +18,10 @@ class LocalEvent {
     required this.startRegistration,
     required this.endRegistration,
     required this.price,
+    required this.visible,
   });
 
-  factory LocalEvent.fromMap(Map<String, dynamic> json) => LocalEvent(
+  factory Event.fromMap(Map<String, dynamic> json) => Event(
         id: json["id"],
         name: json["name"],
         category: json["category"],
@@ -28,6 +30,7 @@ class LocalEvent {
         startRegistration: DateTime.parse(json["startRegistration"]),
         endRegistration: DateTime.parse(json["endRegistration"]),
         price: json["price"],
+        visible: json["visible"] == 0 ? false : true,
       );
 
   Map<String, dynamic> toMap() => {
@@ -39,5 +42,6 @@ class LocalEvent {
         "startRegistration": startRegistration.toIso8601String(),
         "endRegistration": endRegistration.toIso8601String(),
         "price": price,
+        "visible": visible,
       };
 }
