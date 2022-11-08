@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_dotenv/flutter_dotenv.dart';
 
 final String baseUrl = '${dotenv.env['API_URL']}/api/v1';
+final String baseImagesUrl = '${dotenv.env['API_URL']}/images';
 
 Color primary = const Color(0xffF2861E);
 Color orangeColors = const Color(0xffF5591F);

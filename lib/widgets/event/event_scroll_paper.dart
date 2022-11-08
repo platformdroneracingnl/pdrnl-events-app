@@ -1,11 +1,11 @@
 import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
-import 'package:pdrnl_events_app/models/event.dart';
 import 'package:pdrnl_events_app/utils/constants.dart';
+import 'package:pdrnl_events_app/models/event.dart';
 
 class EventScrollPaper extends StatelessWidget {
-  final LocalEvent event;
+  final Event event;
 
   const EventScrollPaper({super.key, required this.event});
 
@@ -88,7 +88,7 @@ class EventScrollPaper extends StatelessWidget {
                       ),
                     ),
                     Text(
-                      "It's free!",
+                      event.price,
                       style: Theme.of(context).textTheme.titleSmall,
                     ),
                   ],
@@ -121,17 +121,22 @@ class EventScrollPaper extends StatelessWidget {
             ),
             const SizedBox(height: 10),
             // TODO: Add event facts
-            ListView.builder(
+            ListView(
               physics: const NeverScrollableScrollPhysics(),
               shrinkWrap: true,
-              itemCount: 3,
-              itemBuilder: (context, index) => eventFacts(context),
+              children: [
+                eventFact(context, event.location.name),
+                eventFact(context,
+                    'Start registration: ${DateFormat('dd-MM-yyyy').format(event.startRegistration)}'),
+                eventFact(context,
+                    'End Registration: ${DateFormat('dd-MM-yyyy').format(event.endRegistration)}'),
+              ],
             ),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 15),
               child: Divider(height: 4),
             ),
-            Text("Steps", style: Theme.of(context).textTheme.headline6),
+            Text("More info", style: Theme.of(context).textTheme.headline6),
             const SizedBox(height: 10),
             ListView.builder(
               physics: const NeverScrollableScrollPhysics(),
@@ -185,7 +190,7 @@ class EventScrollPaper extends StatelessWidget {
     );
   }
 
-  Widget eventFacts(BuildContext context) {
+  Widget eventFact(BuildContext context, detail) {
     return Padding(
       padding: const EdgeInsets.symmetric(vertical: 10),
       child: Row(
@@ -203,7 +208,7 @@ class EventScrollPaper extends StatelessWidget {
             width: 10,
           ),
           Text(
-            "Start/End time",
+            detail,
             style: Theme.of(context).textTheme.bodyText2,
           ),
         ],
