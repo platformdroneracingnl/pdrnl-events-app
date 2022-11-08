@@ -1,8 +1,12 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
+import 'package:pdrnl_events_app/models/event.dart';
+import 'package:pdrnl_events_app/utils/constants.dart';
+
 class EventAppBar extends StatelessWidget {
-  const EventAppBar({super.key});
+  final Event event;
+  const EventAppBar({super.key, required this.event});
 
   @override
   Widget build(BuildContext context) {
@@ -32,7 +36,7 @@ class EventAppBar extends StatelessWidget {
           StretchMode.zoomBackground,
         ],
         background: Image.network(
-          'https://images.pexels.com/photos/12888551/pexels-photo-12888551.jpeg',
+          '$baseImagesUrl/events/${event.image}',
           fit: BoxFit.cover,
         ),
       ),

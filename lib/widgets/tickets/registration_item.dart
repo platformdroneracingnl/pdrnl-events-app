@@ -2,6 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 // Own package imports
+import 'package:pdrnl_events_app/utils/constants.dart';
 import 'package:pdrnl_events_app/models/registration.dart';
 
 class RegistrationItem extends StatelessWidget {
@@ -38,10 +39,12 @@ class RegistrationItem extends StatelessWidget {
               Container(
                 height: 60,
                 width: 60,
-                decoration: const BoxDecoration(
+                decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   image: DecorationImage(
-                    image: NetworkImage('https://picsum.photos/200'),
+                    fit: BoxFit.cover,
+                    image: NetworkImage(
+                        '$baseImagesUrl/events/${registration.event.image}'),
                   ),
                 ),
               ),

@@ -27,7 +27,7 @@ class EventDetailScreen extends StatelessWidget {
           children: <Widget>[
             CustomScrollView(
               slivers: <Widget>[
-                const EventAppBar(),
+                EventAppBar(event: loadedEvent),
                 EventScrollPaper(event: loadedEvent),
               ],
             ),

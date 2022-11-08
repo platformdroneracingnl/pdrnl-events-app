@@ -2,6 +2,7 @@ import 'package:intl/intl.dart';
 import 'package:flutter/material.dart';
 
 // Own package imports
+import 'package:pdrnl_events_app/utils/constants.dart';
 import 'package:pdrnl_events_app/models/event.dart';
 import 'package:pdrnl_events_app/views/event_detail_screen.dart';
 
@@ -11,7 +12,7 @@ class EventCard extends StatelessWidget {
     required this.event,
   }) : super(key: key);
 
-  final LocalEvent event;
+  final Event event;
 
   @override
   Widget build(BuildContext context) {
@@ -66,9 +67,9 @@ class EventCard extends StatelessWidget {
                             color: Colors.grey,
                           ),
                         ),
-                        const Text(
-                          'Sportpaleis Alkmaar',
-                          style: TextStyle(
+                        Text(
+                          event.location.name,
+                          style: const TextStyle(
                             color: Colors.grey,
                           ),
                         ),
@@ -124,11 +125,12 @@ class EventCard extends StatelessWidget {
                   // Image
                   ClipRRect(
                     borderRadius: BorderRadius.circular(20),
-                    child: const Image(
+                    child: Image(
                       height: 180,
                       width: 275,
                       fit: BoxFit.cover,
-                      image: NetworkImage('https://picsum.photos/200'),
+                      image:
+                          NetworkImage('$baseImagesUrl/events/${event.image}'),
                     ),
                   ),
                   // Ticket price
@@ -142,11 +144,11 @@ class EventCard extends StatelessWidget {
                         color: Colors.orange,
                         borderRadius: BorderRadius.circular(8),
                       ),
-                      child: const Align(
+                      child: Align(
                         alignment: Alignment.center,
                         child: Text(
-                          'Gratis',
-                          style: TextStyle(
+                          '€${event.price}',
+                          style: const TextStyle(
                             color: Colors.white,
                             fontWeight: FontWeight.w500,
                           ),
