@@ -1,9 +1,10 @@
 import 'package:flutter/material.dart';
-import 'package:pdrnl_events_app/models/user.dart';
 import 'package:provider/provider.dart';
 
 // My package imports
 import 'package:pdrnl_events_app/utils/constants.dart';
+import 'package:pdrnl_events_app/models/user.dart';
+import 'package:pdrnl_events_app/providers/profile_provider.dart';
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
 
 class ProfileHeader extends StatelessWidget {
@@ -13,16 +14,17 @@ class ProfileHeader extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final auth = Provider.of<AuthProvider>(context);
+    final auth = Provider.of<AuthProvider>(context, listen: false);
+    final user = Provider.of<ProfileProvider>(context, listen: false);
     return FutureBuilder(
-      future: auth.getUser(auth.token),
+      future: user.getUser(auth.token),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(
             child: CircularProgressIndicator(),
           );
         } else {
-          final LocalUser user = auth.user;
+          final LocalUser profile = user.user;
           return SizedBox(
             child: Column(
               children: <Widget>[
@@ -43,7 +45,7 @@ class ProfileHeader extends StatelessWidget {
                           height: 35,
                           width: 35,
                           decoration: BoxDecoration(
-                            color: orangeLightColors,
+                            color: Styles.primaryColor,
                             shape: BoxShape.circle,
                           ),
                           child: const Center(
@@ -62,17 +64,14 @@ class ProfileHeader extends StatelessWidget {
                 ),
                 const SizedBox(height: 20),
                 Text(
-                  user.name,
-                  style: const TextStyle(
-                    fontSize: 20,
-                    fontWeight: FontWeight.w600,
-                  ),
+                  profile.name,
+                  style: Styles.headLineStyle1,
                 ),
                 const SizedBox(height: 5),
                 Text(
-                  user.email,
+                  profile.email,
                   style: const TextStyle(
-                    fontSize: 16,
+                    fontSize: 17,
                     fontWeight: FontWeight.w100,
                   ),
                 ),

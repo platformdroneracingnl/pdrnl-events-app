@@ -62,7 +62,7 @@ class _BaseScreenState extends State<BaseScreen> {
             backgroundColor: Colors.white,
             color: Colors.grey[600],
             activeColor: Colors.white,
-            tabBackgroundColor: orangeLightColors,
+            tabBackgroundColor: Styles.primaryColor,
             padding: const EdgeInsets.all(12),
             onTabChange: (valueIndex) {
               setState(() {
