@@ -2,6 +2,7 @@
 
 <p align="middle">
   <img src="assets/screens/login_screen.jpg" width="30%" style="margin-right: 25px;" />
+  <img src="assets/screens/dashboard_screen.jpg" width="30%" style="margin-right: 25px;" />
   <img src="assets/screens/event_detail_screen.jpg" width="30%" />
 </p>
 
