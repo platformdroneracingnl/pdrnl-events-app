@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 // Own package imports
 import 'package:pdrnl_events_app/providers/events_provider.dart';
 import 'package:pdrnl_events_app/providers/auth_provider.dart';
-import 'package:pdrnl_events_app/widgets/event/event_card.dart';
+import 'package:pdrnl_events_app/widgets/home/home_event_card.dart';
 
 class UpcomingEvents extends StatelessWidget {
   const UpcomingEvents({
@@ -31,7 +31,7 @@ class UpcomingEvents extends StatelessWidget {
                 scrollDirection: Axis.horizontal,
                 itemCount: eventsData.visibleEvents.length,
                 itemBuilder: (context, index) {
-                  return EventCard(event: eventsData.visibleEvents[index]);
+                  return HomeEventCard(event: eventsData.visibleEvents[index]);
                 },
               ),
             );

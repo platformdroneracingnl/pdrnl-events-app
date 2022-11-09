@@ -35,7 +35,7 @@ class _TicketsScreenState extends State<TicketsScreen> {
     return Scaffold(
       appBar: AppBar(
         title: const Text('Tickets'),
-        backgroundColor: Styles.primaryColor,
+        backgroundColor: Colors.black87,
         centerTitle: true,
       ),
       body: RefreshIndicator(
