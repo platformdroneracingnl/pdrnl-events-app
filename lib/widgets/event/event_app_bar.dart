@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 
-import 'package:pdrnl_events_app/models/event.dart';
 import 'package:pdrnl_events_app/utils/constants.dart';
+import 'package:pdrnl_events_app/models/event.dart';
 
 class EventAppBar extends StatelessWidget {
   final Event event;
