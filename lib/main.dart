@@ -36,7 +36,7 @@ class MyApp extends StatelessWidget {
               title: 'PDRNL Events App',
               debugShowCheckedModeBanner: true,
               theme: theme(),
-              initialRoute: '/',
+              // initialRoute: '/',
               home: const SplashScreen(),
               routes: routes,
             ),
