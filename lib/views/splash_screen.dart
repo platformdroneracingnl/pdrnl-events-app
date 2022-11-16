@@ -18,6 +18,7 @@ class SplashScreen extends StatelessWidget {
     Future<void> waiting() async {
       await Future.delayed(const Duration(seconds: 1));
       await auth.getToken();
+      await auth.checkToken();
     }
 
     return Scaffold(

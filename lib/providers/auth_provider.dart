@@ -17,6 +17,27 @@ class AuthProvider with ChangeNotifier {
     return isAuthenticated;
   }
 
+  // Check if token is still valid
+  Future<void> checkToken() async {
+    String uri = '$baseUrl/user';
+
+    http.Response response = await http.get(
+      Uri.parse(uri),
+      headers: {
+        HttpHeaders.contentTypeHeader: 'application/json',
+        HttpHeaders.acceptHeader: 'application/json',
+        HttpHeaders.authorizationHeader: 'Bearer $token',
+      },
+    );
+
+    if (response.statusCode == 200) {
+      isAuthenticated = true;
+    } else {
+      removeToken();
+      isAuthenticated = false;
+    }
+  }
+
   setToken(String token) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setString('token', token);
