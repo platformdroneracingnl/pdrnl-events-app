@@ -33,6 +33,7 @@ class AuthProvider with ChangeNotifier {
     if (response.statusCode == 200) {
       isAuthenticated = true;
     } else {
+      removeToken();
       isAuthenticated = false;
     }
   }
