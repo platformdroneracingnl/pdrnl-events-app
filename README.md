@@ -21,6 +21,7 @@ The following packages are used in this project:
 - [flutter_dotenv](https://pub.dev/packages/flutter_dotenv)
 - [shared_preferences](https://pub.dev/packages/shared_preferences)
 - [device_info_plus](https://pub.dev/packages/device_info_plus)
+- [introduction_screen](https://pub.dev/packages/introduction_screen)
 - [qr_flutter](https://pub.dev/packages/qr_flutter)
 
 ## Getting Started
