@@ -23,6 +23,8 @@ The following packages are used in this project:
 - [device_info_plus](https://pub.dev/packages/device_info_plus)
 - [introduction_screen](https://pub.dev/packages/introduction_screen)
 - [qr_flutter](https://pub.dev/packages/qr_flutter)
+- [flutter_map](https://pub.dev/packages/flutter_map)
+- [latlong2](https://pub.dev/packages/latlong2)
 
 ## Getting Started
 
