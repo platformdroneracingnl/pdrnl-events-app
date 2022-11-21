@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 
 import 'package:pdrnl_events_app/utils/constants.dart';
 import 'package:pdrnl_events_app/models/event.dart';
+import 'package:pdrnl_events_app/widgets/event/event_location_map.dart';
 
 class EventScrollPaper extends StatelessWidget {
   final Event event;
@@ -132,6 +133,17 @@ class EventScrollPaper extends StatelessWidget {
                     'End Registration: ${DateFormat('dd-MM-yyyy').format(event.endRegistration)}'),
               ],
             ),
+            // Location Map
+            const Padding(
+              padding: EdgeInsets.symmetric(vertical: 15),
+              child: Divider(height: 4),
+            ),
+            Text(
+              "Location",
+              style: Theme.of(context).textTheme.headline6,
+            ),
+            const SizedBox(height: 10),
+            EventLocationMap(event: event),
             const Padding(
               padding: EdgeInsets.symmetric(vertical: 15),
               child: Divider(height: 4),
